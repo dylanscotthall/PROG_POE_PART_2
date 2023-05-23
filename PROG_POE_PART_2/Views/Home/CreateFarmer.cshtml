@@ -1,10 +1,15 @@
 ﻿@model PROG_POE_PART_2.Model.Farmer
 @{
     ViewData["Title"] = "Create Farmer";
-
 }
 
 <h1>Create Farmer</h1>
+@{
+    if(ViewBag.error == true)
+    {
+        <p style="color:red;">Ensure all fields are filled in</p>
+    }
+}
 <form asp-controller="Home" asp-action="CreateFarmer" asp-route-employeeId="@ViewBag.employeeId" method="post">
     <div class="mb-3" >
         <label for="" class="form-label">Name</label>

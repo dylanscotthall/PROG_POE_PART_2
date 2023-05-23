@@ -62,39 +62,55 @@ namespace PROG_POE_PART_2.Controllers
             return View();
         }
         //returns a view that allows a employee to create a new farmer
-        public IActionResult CreateFarmer(int? employeeId)
+        public IActionResult CreateFarmer(int? employeeId, bool? error)
         {
             ViewBag.employeeId = employeeId;
+            ViewBag.error = error;
             return View();
         }
         //processes the request to create a new farmer and adds it to the db
         [HttpPost]
         public async Task<IActionResult> CreateFarmer(int? employeeId, Farmer farmer)
         {
-            await db.Farmers.AddAsync(farmer);
-            await db.SaveChangesAsync();
+            try
+            {
+                await db.Farmers.AddAsync(farmer);
+                await db.SaveChangesAsync();
+            }
+            catch(Exception e)
+            {
+                return RedirectToAction("CreateFarmer", new { employeeId = employeeId, error = true });
+            }
             return RedirectToAction("IndexEmployee", new { id = employeeId });
         }
         //allows an employee to edit data of a farmer
-        public IActionResult EditFarmer(int? farmerId, int? employeeId)
+        public IActionResult EditFarmer(int? farmerId, int? employeeId, bool? error)
         {
             ViewBag.Farmer = db.Farmers.Where(f => f.FarmerId == farmerId).FirstOrDefault();
             ViewBag.employeeId = employeeId;
+            ViewBag.error = error;
             return View();
         }
         //processes the request to edit a farmer
         [HttpPost]
         public async Task<IActionResult> EditFarmer(int? employeeId,int? farmerId, Farmer farmer)
         {
-            var result = await db.Farmers.Where(f => f.FarmerId == farmerId).FirstOrDefaultAsync();
-            if (result != null)
+            try
             {
-                result.FarmerName = farmer.FarmerName;
-                result.FarmerSurname = farmer.FarmerSurname;
-                result.FarmName = farmer.FarmName;
-                result.FarmerUsername = farmer.FarmerUsername;
-                result.FarmerPassword = farmer.FarmerPassword;
-                await db.SaveChangesAsync();
+                var result = await db.Farmers.Where(f => f.FarmerId == farmerId).FirstOrDefaultAsync();
+                if (result != null)
+                {
+                    result.FarmerName = farmer.FarmerName;
+                    result.FarmerSurname = farmer.FarmerSurname;
+                    result.FarmName = farmer.FarmName;
+                    result.FarmerUsername = farmer.FarmerUsername;
+                    result.FarmerPassword = farmer.FarmerPassword;
+                    await db.SaveChangesAsync();
+                }
+            }
+            catch(Exception e)
+            {
+                return RedirectToAction("EditFarmer", new { farmerId = farmerId, employeeId = employeeId, error = true});
             }
             return RedirectToAction("IndexEmployee", new { id = employeeId });
         }
@@ -139,38 +155,53 @@ namespace PROG_POE_PART_2.Controllers
             return RedirectToAction("IndexEmployee", new { id = employeeId});
         }
         //returns a page allow a farmer to create new product
-        public IActionResult CreateProduct(int? farmerId)
+        public IActionResult CreateProduct(int? farmerId, bool? error)
         {
             ViewBag.farmerId = farmerId;
+            ViewBag.error = error;
             return View();
         }
         //processes request for farmer to create new product and adds it to the database
         [HttpPost]
         public async Task<IActionResult> CreateProduct(int? farmerId, Product product)
         {
-            await db.Products.AddAsync(product);
-            await db.SaveChangesAsync();
+            try
+            {
+                await db.Products.AddAsync(product);
+                await db.SaveChangesAsync();
+            }
+            catch(Exception e) {
+                return RedirectToAction("CreateProduct", new { farmerId = farmerId , error = true});
+            }
             return RedirectToAction("IndexFarmer", new { id = farmerId });
         }
         //allows a farmer to edit a product
-        public IActionResult EditProduct(int? farmerId, int? productId)
+        public IActionResult EditProduct(int? farmerId, int? productId, bool? error)
         {
             ViewBag.Product = db.Products.Where(p => p.ProductId == productId).FirstOrDefault();
             ViewBag.farmerId = farmerId;
+            ViewBag.error = error;
             return View();
         }
         //processes the request to edit a product
         [HttpPost]
         public async Task<IActionResult> EditProduct(int? farmerId, int? productId, Product product)
         {
-            var result = await db.Products.Where(p => p.ProductId == productId).FirstOrDefaultAsync();
-            if (result != null)
+            try
             {
-                result.ProductName = product.ProductName;
-                result.ProductPrice = product.ProductPrice;
-                result.ProductStock = product.ProductStock;
-                result.ProductType = product.ProductType;
-                await db.SaveChangesAsync();
+                var result = await db.Products.Where(p => p.ProductId == productId).FirstOrDefaultAsync();
+                if (result != null)
+                {
+                    result.ProductName = product.ProductName;
+                    result.ProductPrice = product.ProductPrice;
+                    result.ProductStock = product.ProductStock;
+                    result.ProductType = product.ProductType;
+                    await db.SaveChangesAsync();
+                }
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("EditProduct", new { farmerId = farmerId, productId = productId, error = true});
             }
             return RedirectToAction("IndexFarmer", new { id = farmerId });
         }

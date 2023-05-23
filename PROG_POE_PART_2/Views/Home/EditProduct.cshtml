@@ -5,6 +5,12 @@
 }
 
 <h1>Edit Product</h1>
+@{
+    if (ViewBag.error == true)
+    {
+        <p style="color:red;">Ensure all fields are filled in</p>
+    }
+}
 <form asp-controller="Home" asp-action="EditProduct" asp-route-farmerId="@ViewBag.farmerId" asp-route-productId="@ViewBag.Product.ProductId" method="post">
     <div class="mb-3">
         <label for="" class="form-label">Product Name</label>
