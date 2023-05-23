@@ -1,0 +1,27 @@
+﻿@model PROG_POE_PART_2.Model.Product
+@{
+    ViewData["Title"] = "View Product";
+
+}
+
+<h1>View Product</h1>
+<form asp-controller="Home" asp-action="ViewProduct" asp-route-farmerId="@ViewBag.farmerId" method="post">
+    <div class="mb-3">
+        <label for="" class="form-label">Product Name: </label>
+        <label for="" class="form-label">@ViewBag.Product.ProductName</label>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Product Price: </label>
+        <label for="" class="form-label">@ViewBag.Product.ProductPrice</label>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Product Stock: </label>
+        <label for="" class="form-label">@ViewBag.Product.ProductStock</label>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Product Type: </label>
+        <label for="" class="form-label">@ViewBag.Product.ProductType</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+

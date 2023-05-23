@@ -1,0 +1,31 @@
+﻿@model PROG_POE_PART_2.Model.Farmer
+@{
+    ViewData["Title"] = "Edit Farmer";
+
+}
+
+<h1>Edit Farmer</h1>
+<form asp-controller="Home" asp-action="EditFarmer" asp-route-employeeId="@ViewBag.employeeId" asp-route-farmerId="@ViewBag.Farmer.FarmerId" method="post">
+    <div class="mb-3">
+        <label for="" class="form-label">Name</label>
+        <input type="text" class="form-control" asp-for="FarmerName" value="@ViewBag.Farmer.FarmerName"/>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Surname</label>
+        <input type="text" class="form-control" asp-for="FarmerSurname" value="@ViewBag.Farmer.FarmerSurname" />
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Farm Name</label>
+        <input type="text" class="form-control" asp-for="FarmName" value="@ViewBag.Farmer.FarmName" />
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Username</label>
+        <input type="text" class="form-control" asp-for="FarmerUsername" value="@ViewBag.Farmer.FarmerUsername" />
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Password</label>
+        <input type="password" class="form-control" asp-for="FarmerPassword" value="@ViewBag.Farmer.FarmerPassword" />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+

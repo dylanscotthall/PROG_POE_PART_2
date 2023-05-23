@@ -1,0 +1,67 @@
+﻿@model PROG_POE_PART_2.Model.Farmer
+@{
+    ViewData["Title"] = "View Farmer";
+
+}
+
+<h1>View Farmer</h1>
+<form asp-controller="Home" asp-action="ViewFarmer" asp-route-employeeId="@ViewBag.employeeId" method="post">
+    <div class="mb-3">
+        <label for="" class="form-label">Name: </label>
+        <label for="" class="form-label">@ViewBag.Farmer.FarmerName</label>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Surname: </label>
+        <label for="" class="form-label">@ViewBag.Farmer.FarmerSurname</label>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Farm Name: </label>
+        <label for="" class="form-label">@ViewBag.Farmer.FarmName</label>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Username: </label>
+        <label for="" class="form-label">@ViewBag.Farmer.FarmerUsername</label>
+    </div>
+    <a asp-action="Sort" asp-route-employeeId="@ViewBag.employeeId" asp-route-farmerId="@ViewBag.Farmer.FarmerId" asp-route-sort="date">Date</a>
+    <a asp-action="Sort" asp-route-employeeId="@ViewBag.employeeId" asp-route-farmerId="@ViewBag.Farmer.FarmerId" asp-route-sort="type">Type</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    ProductName
+                </th>
+                <th>
+                    ProductPrice
+                </th>
+                <th>
+                    ProductStock
+                </th>
+                <th>
+                    dateAdded
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.products)
+            {
+                <tr>
+                    <td>
+                        @(item.ProductName)
+                    </td>
+                    <td>
+                        @(item.ProductPrice)
+                    </td>
+                    <td>
+                        @(item.ProductStock)
+                    </td>
+                    <td>
+                        @(item.DateAdded)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Done</button>
+</form>
+

@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Farmer page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Farmers</h1>
+    <p>
+        <a asp-action="CreateFarmer" asp-route-employeeId="@ViewBag.user.EmployeeId">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    FarmerName
+                </th>
+                <th>
+                    FarmerSurname
+                </th>
+                <th>
+                    FarmName
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.farmers)
+            {
+                <tr>
+                    <td>
+                        @(item.FarmerName)
+                    </td>
+                    <td>
+                        @(item.FarmerSurname)
+                    </td>
+                    <td>
+                        @(item.FarmName)
+                    </td>
+                    <td>
+                        <a asp-action="EditFarmer" asp-route-FarmerId="@item.FarmerId" asp-route-employeeId="@ViewBag.user.EmployeeId">Edit</a> |
+                        <a asp-action="ViewFarmer" asp-route-FarmerId="@item.FarmerId" asp-route-employeeId="@ViewBag.user.EmployeeId">Details</a> |
+                        <a asp-action="DeleteFarmer" asp-route-FarmerId="@item.FarmerId" asp-route-employeeId="@ViewBag.user.EmployeeId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
