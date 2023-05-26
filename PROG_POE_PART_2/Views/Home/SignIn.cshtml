@@ -5,6 +5,12 @@
 }
 
 <h1>Sign In</h1>
+@{
+    if (ViewBag.error == true)
+    {
+        <p style="color:red;">You have entered an incorrect username or password</p>
+    }
+}
 <form asp-controller="Home" asp-action="SignIn" method="post">
     <div class="mb-3" >
         <label for="" class="form-label">Username</label>

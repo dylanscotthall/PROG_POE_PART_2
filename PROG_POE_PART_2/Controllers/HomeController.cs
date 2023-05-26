@@ -59,6 +59,7 @@ namespace PROG_POE_PART_2.Controllers
             {
                 return RedirectToAction("IndexEmployee", new { id = employee.EmployeeId });
             }
+            ViewBag.error = true;
             return View();
         }
         //returns a view that allows a employee to create a new farmer
@@ -165,6 +166,7 @@ namespace PROG_POE_PART_2.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateProduct(int? farmerId, Product product)
         {
+            product.DateAdded = DateTime.Now;
             try
             {
                 await db.Products.AddAsync(product);

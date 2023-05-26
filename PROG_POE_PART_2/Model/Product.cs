@@ -15,7 +15,7 @@ public partial class Product
 
     public int? FarmerId { get; set; }
 
-    public string ProductType { get; set; } = null!;
+    public string? ProductType { get; set; } = null!;
 
     public DateTime DateAdded { get; set; }
 
