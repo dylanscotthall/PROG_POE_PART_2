@@ -1,5 +1,8 @@
 # PROG_POE_PART_2
 
+## About this application
+This is a basic farmer and stock managment site that allows an employee to be able to add and view different farmers to a database and view all their products. While farmers can add different products to their own inventory and update and delete the products as necessary.
+
 ## Running the application
 To run this application simply clone this github application to a folder on your pc and select "PROG_POE_Part_2.sln", if asked choose to open this file using Microsoft Visual Studio you should be greeted with a screen similar to this one.
 ![Screenshot (5)](https://github.com/dylanscotthall/PROG_POE_PART_2/assets/40272584/f0acbd4b-3087-4017-b201-9af77b5e966d)
